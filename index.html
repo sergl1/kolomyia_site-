@@ -6,19 +6,20 @@
   <meta name="theme-color" content="#f6f1e8">
   <meta name="description" content="Одноденний маршрут Коломиєю: писанкове мистецтво, гуцульська культура, архітектура та затишні вулички міста.">
   <script>
-    // Start fresh page visits at the top, even when a shared URL has a section anchor.
-    const pageNavigation = performance.getEntriesByType('navigation')[0];
-    if (!pageNavigation || pageNavigation.type !== 'back_forward') {
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-      window.addEventListener('pageshow', () => window.scrollTo(0, 0), { once: true });
+    // On phones, prevent a fresh visit or reload from jumping to an old scroll position.
+    if (window.matchMedia('(max-width: 640px)').matches) {
+      const pageNavigation = performance.getEntriesByType('navigation')[0];
+      if (!pageNavigation || pageNavigation.type !== 'back_forward') {
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+      }
     }
   </script>
   <title>Коломия — місто, яке варто відкрити</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=mobile-arrow-2">
+  <link rel="stylesheet" href="styles.css?v=mobile-layout-3">
   <script src="script.js" defer></script>
 </head>
 <body>
