@@ -771,6 +771,12 @@ body {
 
 /* Keep mobile action controls, but leave their circular icon slots empty. */
 @media (max-width: 640px) {
+  /* Prevent the decorative Unicode star from rendering as a colorful emoji on iOS. */
+  .route-section::after {
+    content: none;
+    display: none;
+  }
+
   .route-link .route-link-arrow,
   .action-link .action-arrow {
     font-size: 0;
