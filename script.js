@@ -1,5 +1,22 @@
 document.documentElement.classList.add('js-enabled');
 
+// Keep diagonal-link arrows in text presentation on narrow screens so iOS
+// renders them as clean symbols instead of colorful emoji glyphs.
+const mobileArrowText = window.matchMedia('(max-width: 640px)');
+const setArrowPresentation = () => {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    if (node.nodeValue.includes('↗')) {
+      node.nodeValue = mobileArrowText.matches
+        ? node.nodeValue.replace(/↗\uFE0E?/g, '↗\uFE0E')
+        : node.nodeValue.replace(/↗\uFE0E/g, '↗');
+    }
+  }
+};
+setArrowPresentation();
+mobileArrowText.addEventListener('change', setArrowPresentation);
+
 // A fine progress line gives the long-form walk a quiet sense of movement.
 const progress = document.createElement('div');
 progress.className = 'scroll-progress';
@@ -123,3 +140,4 @@ if (!prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fin
     });
   });
 }
+
