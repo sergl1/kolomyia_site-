@@ -620,3 +620,162 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .brand-mark, .city-story-card, .stop-card, .visit-card { transition: none; }
 }
+
+/* Mobile-only finishing pass. These rules intentionally leave tablet and desktop unchanged. */
+@media (max-width: 640px) {
+  html { scroll-padding-top: 82px; }
+  body { -webkit-text-size-adjust: 100%; }
+  .section-wrap { width: min(calc(100% - 36px), 560px); }
+  .site-header { height: 68px; padding-inline: 18px; }
+  .brand { gap: 9px; }
+  .brand-mark { width: 36px; height: 36px; font-size: 20px; }
+  .brand-name { font-size: 15px; }
+  .brand-name span { font-size: 8px; letter-spacing: .12em; }
+  .menu-toggle { width: 48px; height: 48px; border-radius: 14px; transition: background-color .25s ease, border-color .25s ease; }
+  .menu-toggle:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .menu-toggle[aria-expanded="true"] { border-color: rgba(157,67,47,.38); background: rgba(157,67,47,.06); }
+  .main-nav {
+    display: none;
+    top: calc(100% + 8px);
+    left: 14px;
+    right: 14px;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-8px);
+    padding: 8px 16px;
+    gap: 2px;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    box-shadow: 0 16px 38px rgba(35,59,52,.13);
+  }
+  .main-nav.is-open {
+    display: flex;
+    max-height: calc(100dvh - 90px);
+    overflow-y: auto;
+    transform: translateY(0);
+    border-color: var(--line);
+    padding: 10px 16px 14px;
+    animation: mobile-menu-in .24s ease-out both;
+  }
+  @keyframes mobile-menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .main-nav a:not(.nav-cta) {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 10px 5px;
+    border-bottom: 1px solid rgba(35,59,52,.09);
+    font-size: 16px;
+  }
+  .main-nav a:not(.nav-cta)::after { display: none; }
+  .main-nav .nav-cta {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 8px;
+    padding: 10px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px;
+    background: rgba(157,67,47,.06);
+  }
+  main[id], section[id], footer[id] { scroll-margin-top: 82px; }
+
+  .hero { padding-top: 34px; padding-bottom: 56px; gap: 24px; }
+  .hero h1 { font-size: clamp(46px, 12.3vw, 56px); line-height: 1.04; }
+  .hero-lead { max-width: 100%; font-size: 17px; line-height: 1.7; }
+  .hero-actions { display: grid; grid-template-columns: 1fr; gap: 11px; }
+  .hero-actions .button, .hero-actions .text-link { width: 100%; min-height: 52px; padding: 12px 16px; justify-content: space-between; }
+  .hero-art { width: 100%; height: clamp(300px, 92vw, 390px); min-height: 0; max-height: none; }
+  .hero-art::after { width: min(72%, 270px); height: auto; aspect-ratio: 1; }
+  .art-label { gap: 12px; font-size: 8px; letter-spacing: .1em; }
+  .art-label-top { top: 18px; left: 17px; right: 17px; }
+  .art-label-bottom { bottom: 21px; left: 17px; right: 17px; }
+  .art-coordinate { right: 6px; }
+  .hero-credit { right: 8px; bottom: 52px; }
+  .hero-bottomline { bottom: 17px; font-size: 9px; letter-spacing: .08em; }
+
+  .intro, .places { padding-top: 68px; padding-bottom: 70px; }
+  .intro-grid h2, .route-heading h2, .places-heading h2, .story-copy h2,
+  .visit-heading h2, .plan-content h2, .city-story-heading h2 {
+    font-size: clamp(36px, 10.2vw, 43px);
+    line-height: 1.12;
+  }
+  .intro-text { margin-top: 18px; font-size: 16px; line-height: 1.75; }
+  .intro-text p { margin-bottom: 17px; }
+  .action-link, .route-link { min-height: 54px; }
+  .fact-strip { grid-template-columns: minmax(90px, auto) 1fr; gap: 10px 14px; padding: 19px 0; }
+  .fact-number { font-size: 40px; }
+  .fact-strip p { grid-column: 1 / -1; grid-row: 2; font-size: 15px; line-height: 1.65; }
+  .fact-strip > .fact-action, .fact-action { width: 100%; min-height: 50px; grid-column: 1 / -1; grid-row: 3; justify-self: stretch; justify-content: space-between; white-space: normal; }
+
+  .route-section { padding: 68px 0 62px; }
+  .route-heading { margin-bottom: 34px; }
+  .route-heading > p { font-size: 16px; line-height: 1.7; }
+  .route-line { gap: 7px; }
+  .route-stop { padding-bottom: 24px; }
+  .stop-card { padding-left: 8px; }
+  .stop-card h3 { font-size: 23px; line-height: 1.2; }
+  .stop-card > p:not(.stop-time) { font-size: 16px; line-height: 1.65; }
+  .route-link { padding: 10px 12px; }
+  .route-link-copy small { font-size: 10px; }
+  .route-link-copy strong { font-size: 14px; }
+  .route-footnote, .visit-note, .city-story-note { font-size: 14px; line-height: 1.65; }
+
+  .places-heading { margin-bottom: 26px; }
+  .place-grid { gap: 15px; }
+  .card-visual { height: auto; min-height: 0; aspect-ratio: 1.22; }
+  .photo-visual .visual-number { top: 16px; left: 16px; font-size: 10px; }
+  .photo-visual .visual-caption { left: 17px; bottom: 22px; font-size: 22px; }
+  .photo-credit { max-width: calc(100% - 18px); right: 9px; bottom: 8px; padding: 6px 8px; font-size: 10px; }
+  .place-card-copy { padding: 20px 18px 22px; }
+  .place-card-copy h3 { font-size: 24px; }
+  .place-card-copy p { font-size: 16px; line-height: 1.65; }
+
+  .story-section { padding-top: 10px; padding-bottom: 72px; }
+  .story-grid { margin-top: 24px; gap: 24px; }
+  .story-photo { min-height: 0; aspect-ratio: 1.08; }
+  .story-photo figcaption { max-width: 100%; padding: 8px 10px; font-size: 10px; line-height: 1.4; }
+  .story-copy h2 { margin-bottom: 18px; }
+  .story-copy > p:not(.eyebrow) { font-size: 16px; line-height: 1.75; }
+  .story-copy .action-link { width: 100%; }
+
+  .visit-section { padding-bottom: 68px; }
+  .visit-heading { margin: 24px 0 24px; }
+  .visit-heading > p { font-size: 16px; line-height: 1.65; }
+  .visit-card, .visit-card + .visit-card { padding: 20px 0; }
+  .visit-card h3 { margin: 10px 0 7px; font-size: 24px; }
+  .visit-card p { margin-bottom: 16px; font-size: 16px; line-height: 1.65; }
+  .visit-card .action-link { min-height: 54px; }
+  .prepare-strip { margin-top: 22px; padding: 19px 16px; gap: 12px; }
+  .prepare-strip p { font-size: 15px; line-height: 1.6; }
+
+  .plan-callout { min-height: 0; margin-bottom: 44px; padding: 32px 22px; gap: 19px; }
+  .plan-content h2 { font-size: clamp(38px, 10.5vw, 46px); }
+  .plan-content > p:last-child { max-width: 100%; font-size: 16px; line-height: 1.6; }
+  .plan-callout > .button { width: 100%; min-height: 54px; justify-content: space-between; padding-inline: 17px; }
+  .plan-pattern { left: 3%; bottom: -6px; font-size: 36px; }
+  .plan-spark { right: -58px; top: 74px; font-size: 130px; }
+
+  .site-footer { min-height: 0; padding-top: 22px; padding-bottom: 26px; grid-template-columns: 1fr auto; align-items: start; gap: 13px 10px; }
+  .site-footer > p { grid-column: 1 / -1; grid-row: 2; font-size: 13px; line-height: 1.7; }
+  .site-footer > p a { display: inline-flex; min-height: 44px; align-items: center; }
+  .back-top { grid-column: 2; grid-row: 1; min-height: 44px; display: inline-flex; align-items: center; font-size: 13px; }
+  .section-kicker { font-size: 10px; letter-spacing: .12em; }
+
+  /* Keep scroll reveals quick and parallax still on phones. */
+  .js-enabled .reveal { transition-duration: .45s; transition-delay: 0ms !important; filter: none; transform: translateY(12px); }
+  .js-enabled .reveal.is-visible { transform: none; }
+  .hero-photo { transform: scale(1.035); }
+  .motion-panel img { translate: none !important; }
+}
+
+@media (max-width: 640px) and (hover: none) {
+  .place-card:hover, .place-card:focus-within { transform: none; }
+  .place-card:hover .photo-visual img { transform: none; filter: none; }
+  .visit-card:hover, .route-stop:hover .stop-card { transform: none; }
+  .route-stop:hover .stop-dot { transform: none; box-shadow: none; }
+  .hero-art:hover .hero-photo { filter: sepia(.16) saturate(.72) brightness(.72); }
+  .hero-art:hover .hero-egg { scale: 1; filter: drop-shadow(20px 28px 12px rgba(32,30,24,.3)); }
+  .hero-art:hover .art-stamp { translate: none; rotate: 9deg; box-shadow: 0 12px 32px rgba(32,30,24,.15); }
+}
